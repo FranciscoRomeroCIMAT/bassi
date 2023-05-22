@@ -1,0 +1,14 @@
+README.txt
+setup.py
+bassi/Analysis.py
+bassi/Event.py
+bassi/Fault.py
+bassi/Functions.py
+bassi/Gibbs_Hybrid.py
+bassi/__init__.py
+bassi.egg-info/PKG-INFO
+bassi.egg-info/SOURCES.txt
+bassi.egg-info/dependency_links.txt
+bassi.egg-info/not-zip-safe
+bassi.egg-info/requires.txt
+bassi.egg-info/top_level.txt
