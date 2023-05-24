@@ -305,7 +305,7 @@ class analysis:
         path = self.Fault.rootdir
         path_Fault = path + self.Event.Fault.name +"/"             # Path with data
         path_Event=path_Fault+self.Event.name +"/"
-        path_la = path_Event + "Sim_la1_%s_la2_%s/" % (la1,la2) # Path to save the mean and covariance
+        path_la = self.output_dir + "Sim_la1_%s_la2_%s/" % (la1,la2) # Path to save the mean and covariance
         path_la_sali = path_la + "output/"  # Path to save the initial state for future simulations
         
         with open(path_la_sali+'config.txt') as f:
