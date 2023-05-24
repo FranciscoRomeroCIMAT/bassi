@@ -22,7 +22,11 @@ class event:
         self.Fault=Fault
         self.name=name
         self.wkdir=Fault.rootdir+Fault.name+"/"+name+"/"
-        self.stats=pd.read_table(self.wkdir+stats_file, sep="\s+",header=None)
+        try:
+            self.stats=pd.read_table(self.wkdir+stats_file, sep="\s+",header=None)
+        except:
+            print("\t Stations data was not defined")
+        
         self.nsli=len(self.stats)
         self.U=None
         try:
