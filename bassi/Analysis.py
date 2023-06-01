@@ -7,6 +7,7 @@ import ast
 class analysis:
     """
         Event. Event object describing the Event data.
+        folder_name: name of the folder to save analysis data
         Sn: Standard deviation in north direction
         Se: Standard deviation in east direction
         Sv: Standard deviation in vertical direction
@@ -79,7 +80,7 @@ class analysis:
             Correlation length for the strike component.
         la2 : float
             Correlation length for the dip component.
-        synt : Bolean
+        synt : Boolean
             If synt = True uses the synthetic data.
             If synt = False uses the real data.
         la1_s : float
@@ -193,10 +194,10 @@ class analysis:
         return Theta_p
     
     def DIC(self,data):
-        """Computes DIC of posterior simulated data
+        """Computes DIC (Deviance Information Criterion) of posterior simulated data
         ----------
         data: numpy.array
-            simulated data
+           Posterior simulated data
         ----------
         Deviance information criterion as described in Spiegelhalter et al. (2002, p. 587)."""
         theta_mean = data.mean(axis = 0)  #Posterior mean
@@ -207,9 +208,9 @@ class analysis:
         DIC_i = 2 * mean_DIC - DIC_mean
         return DIC_i
     
-    def Run_MCMC(self, la1, la2, itera = 1, n = 15000000, ss = 2000, BurnIn = 60000, saveoutput = False, saveconfig=False): 
+    def Run_MCMC(self, la1, la2, itera = 1, n = 15000000, ss = 2000, BurnIn = 60000, saveoutput = True, saveconfig=True): 
         """
-        We simulate from the truncated normal calculating the DIC
+        Simulate from the truncated normal calculating the DIC
         Parameters
         ----------
         la1 : float
@@ -223,17 +224,17 @@ class analysis:
         ss: int
             Sample size; number of simulations to save.
             
-        saveoutput : bolean, optional
+        saveoutput : bolean
             If saveoutput = True, save the simulations else only return the simulations
-            simu and the log energy logEnergy. The default is False.
+            simu and the log energy logEnergy. The default is True.
             
-        saveconfig : bolean, optional
+        saveconfig : bolean
             If saveconfig = True, save the MCMC config in a file else the MCMC config is not
-            saved. The default is False.
+            saved. The default is True.
 
         Returns
         -------
-        Save la1, la2, and the DIC in the DIC_all.txt file.
+        Save la1, la2, and the DIC in the DIC.txt file.
 
         """
         
@@ -301,7 +302,7 @@ class analysis:
     
         Returns
         -------
-        Saves Coefficient of Variaton and returns it as a numpy array"""
+        Saves Coefficient of Variaton and returns it as a numpy.array"""
         path = self.Fault.rootdir
         path_Fault = path + self.Event.Fault.name +"/"             # Path with data
         path_Event=path_Fault+self.Event.name +"/"
